@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head>
+    <meta charset="UTF-8">
+    <title>Matematický příklad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #00AF3F;
+        }
+        #example {
+            width: 500px;
+            margin-bottom: 20px;
+        }
+        #logo {
+            width: 200px;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            margin-right: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        h2 {
+        font-size: 50px
+        }
+    </style>
+</head>
+<body>
+    <img id="logo" src="logo.png">
+    <h2>Vyřeš příklad</h2>
+    <img id="example" src="kapr.jpg" alt="Matematický příklad">
+    <input type="text" id="answer" placeholder="Zadejte odpověď">
+    <button onclick="checkAnswer()">Odeslat</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        function checkAnswer() {
+            const correctAnswer = "42"; // Zde nastav správnou odpověď
+            const userAnswer = document.getElementById("answer").value;
+            const result = document.getElementById("result");
+
+            if (userAnswer === correctAnswer) {
+                result.textContent = "Správně!";
+                result.style.color = "green";
+            } else {
+                result.textContent = "Špatně, zkuste to znovu.";
+                result.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
