@@ -18,6 +18,15 @@
             width: 500px;
             margin-bottom: 20px;
         }
+        #whiteBox {
+            display: None;
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
         #logo {
             width: 200px;
             position: absolute;
@@ -63,20 +72,24 @@
 <body>
     <img id="logo" src="logo.png">
     <h2>Vyřeš příklad</h2>
-    <img id="example" src="kapr.jpg" alt="Matematický příklad">
+    <img id="example" src="hadanka.png" alt="Matematický příklad">
     <input type="text" id="answer" placeholder="Zadejte odpověď">
     <button onclick="checkAnswer()">Odeslat</button>
-    <img id="hint" src="rybarina.jpg" alt="Nápověda">
-    <img id="success" src="jeseter.jpg" alt="Správně">
+    <img id="hint" src="sure.jpg" alt="Nápověda">
+    <img id="success" src="nice.jpg" alt="Správně">
+    <div class="white-box" id="whiteBox">
+    <p>1. část kódu je: 777</p>
+    </div>
     <div class="result" id="result"></div>
 
     <script>
         function checkAnswer() {
-            const correctAnswer = "42"; // Zde nastav správnou odpověď
+            const correctAnswer = "44"; // Zde nastav správnou odpověď
             const userAnswer = document.getElementById("answer").value;
             const result = document.getElementById("result");
             const hint = document.getElementById("hint");
-            const success = document.getElementById("success")
+            const success = document.getElementById("success");
+            const whiteBox = document.getElementById("whiteBox");
 
 
             if (userAnswer === correctAnswer) {
@@ -84,11 +97,13 @@
                 result.style.color = "black";
                 hint.style.display = "none";
                 success.style.display = "block";
+                whiteBox.style.display = "block";
             } else {
-                result.textContent = "Špatně, tady je nápověda --->";
+                result.textContent = "Špatně :(";
                 result.style.color = "red";
                 hint.style.display = "block";
                 success.style.display = "none";
+                whiteBox.style.display = "none";
             }
         }
     </script>
