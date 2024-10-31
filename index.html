@@ -25,6 +25,20 @@
             top: 20px;
             margin-right: 20px;
         }
+        #hint {
+            display: None;
+            width: 400px;
+            margin-bottom: 20px;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;}
+        #success {
+            display: None;
+            width: 400px;
+            margin-bottom: 20px;
+            position: absolute;
+            left: 20px;
+            bottom: 20px;}
         input[type="text"] {
             padding: 10px;
             font-size: 16px;
@@ -52,7 +66,8 @@
     <img id="example" src="kapr.jpg" alt="Matematický příklad">
     <input type="text" id="answer" placeholder="Zadejte odpověď">
     <button onclick="checkAnswer()">Odeslat</button>
-
+    <img id="hint" src="rybarina.jpg" alt="Nápověda">
+    <img id="success" src="jeseter.jpg" alt="Správně">
     <div class="result" id="result"></div>
 
     <script>
@@ -60,17 +75,23 @@
             const correctAnswer = "42"; // Zde nastav správnou odpověď
             const userAnswer = document.getElementById("answer").value;
             const result = document.getElementById("result");
+            const hint = document.getElementById("hint");
+            const success = document.getElementById("success")
+
 
             if (userAnswer === correctAnswer) {
                 result.textContent = "Správně!";
-                result.style.color = "purple";
+                result.style.color = "black";
+                hint.style.display = "none";
+                success.style.display = "block";
             } else {
-                result.textContent = "Špatně, zkuste to znovu.";
+                result.textContent = "Špatně, tady je nápověda --->";
                 result.style.color = "red";
+                hint.style.display = "block";
+                success.style.display = "none";
             }
         }
     </script>
 
 </body>
 </html>
-
