@@ -10,12 +10,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
             margin: 0;
             background-color: #00AF3F;
         }
-        #example {
-            width: 500px;
+        .example {
+            width: 40vw;
+            height: auto;
             margin-bottom: 20px;
         }
         #whiteBox {
@@ -24,7 +24,7 @@
             border: 2px solid #ccc;
             border-radius: 8px;
             padding: 20px;
-            max-width: 400px;
+            max-width: 500px;
             margin: 20px auto;
         }
         #logo {
@@ -36,14 +36,16 @@
         }
         #hint {
             display: None;
-            width: 400px;
+            width: 25vw;
+            height: auto;
             margin-bottom: 20px;
             position: absolute;
             right: 20px;
             bottom: 20px;}
         #success {
             display: None;
-            width: 500px;
+            width: 25vw;
+            height: auto;
             margin-bottom: 20px;
             position: absolute;
             left: 20px;
@@ -61,7 +63,8 @@
             cursor: pointer;
         }
         .result {
-            margin-top: 10px;
+            margin-top: 20px;
+            margin-bottom:30px;
             font-weight: bold;
         }
         h2 {
@@ -72,7 +75,7 @@
 <body>
     <img id="logo" src="logo.png">
     <h2>Vyřeš příklad</h2>
-    <img id="example" src="hadanka.png" alt="Matematický příklad">
+    <img id="example" class="example"alt="Matematický příklad">
     <input type="text" id="answer" placeholder="Zadejte odpověď">
     <button onclick="checkAnswer()">Odeslat</button>
     <img id="hint" src="sure.jpg" alt="Nápověda">
@@ -83,8 +86,24 @@
     <div class="result" id="result"></div>
 
     <script>
+            const images = [
+                { src: "math_example1.png", correctAnswer: "1" },
+                { src: "math_example2.png", correctAnswer: "2" },
+                { src: "math_example3.png", correctAnswer: "3" },
+                { src: "math_example4.png", correctAnswer: "4" },
+                { src: "math_example5.png", correctAnswer: "5" }
+             ];
+             
+        let randomImage;
+        
+        function setRandomImage(){
+        randomImage = images[Math.floor(Math.random() * images.length)];
+        const imageElement = document.getElementById("example");
+        imageElement.src = randomImage.src;
+        imageElement.classList.add("example");
+        }
         function checkAnswer() {
-            const correctAnswer = "44"; // Zde nastav správnou odpověď
+            
             const userAnswer = document.getElementById("answer").value;
             const result = document.getElementById("result");
             const hint = document.getElementById("hint");
@@ -92,7 +111,7 @@
             const whiteBox = document.getElementById("whiteBox");
 
 
-            if (userAnswer === correctAnswer) {
+            if (userAnswer === randomImage.correctAnswer) {
                 result.textContent = "Správně!";
                 result.style.color = "black";
                 hint.style.display = "none";
@@ -106,6 +125,7 @@
                 whiteBox.style.display = "none";
             }
         }
+        window.onload = setRandomImage;
     </script>
 
 </body>
