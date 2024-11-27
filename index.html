@@ -77,15 +77,14 @@
 <body>
     <img id="logo" src="logo.png">
     <h2>Vyřeš příklad</h2>
-    <img id="example" class="example"alt="Matematický příklad">
+    <img id="example" class="example" alt="Matematický příklad">
     <input type="text" id="answer" placeholder="Zadejte odpověď">
     <button onclick="checkAnswer()">Odeslat</button>
-    <img id="hint" src="sure.jpg" alt="Nápověda">
     <img id="success" src="nice.jpg" alt="Správně">
+    <img id="hint" src="meme1.png" alt="Nápověda">
     <div class="white-box" id="whiteBox">
     <p>1. část kódu je: 777</p>
     </div>
-    <div class="result" id="result"></div>
 
     <script>
             const images = [
@@ -95,6 +94,32 @@
                 { src: "math_example4.png", correctAnswer: "4" },
                 { src: "math_example5.png", correctAnswer: "5" }
              ];
+             const memes = [
+                { src: "meme1.png"},
+                { src: "meme2.png"},
+                { src: "meme3.jpg"},
+                { src: "meme4.jpg"},
+                { src: "meme5.jpg"}
+             ];
+             
+        let randomMeme;
+        
+        function setRandomMeme(){
+        randomMeme = memes[Math.floor(Math.random() * memes.length)];
+        const memeElement = document.getElementById("hint");
+        memeElement.src = randomMeme.src;
+        memeElement.classList.add("hint");
+        memeElement.style.display = "block";}
+        
+        let randomMemecorrect;
+        
+        function setRandomMemecorrect(){
+        randomMemecorrect = memes[Math.floor(Math.random() * memes.length)];
+        const memeElementcorrect = document.getElementById("success");
+        memeElementcorrect.src = randomMeme.src;
+        memeElementcorrect.classList.add("success");
+        memeElementcorrect.style.display = "block";}                
+                        
              
         let randomImage;
         
@@ -102,27 +127,19 @@
         randomImage = images[Math.floor(Math.random() * images.length)];
         const imageElement = document.getElementById("example");
         imageElement.src = randomImage.src;
-        imageElement.classList.add("example");
-        }
+        imageElement.classList.add("example");}
         function checkAnswer() {
             
             const userAnswer = document.getElementById("answer").value;
-            const result = document.getElementById("result");
-            const hint = document.getElementById("hint");
-            const success = document.getElementById("success");
             const whiteBox = document.getElementById("whiteBox");
 
 
             if (userAnswer === randomImage.correctAnswer) {
-                result.textContent = "Správně!";
-                result.style.color = "black";
                 hint.style.display = "none";
-                success.style.display = "block";
+                setRandomMemecorrect();
                 whiteBox.style.display = "block";
             } else {
-                result.textContent = "Špatně :(";
-                result.style.color = "red";
-                hint.style.display = "block";
+                setRandomMeme();
                 success.style.display = "none";
                 whiteBox.style.display = "none";
             }
