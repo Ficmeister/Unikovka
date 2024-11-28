@@ -72,6 +72,15 @@
         h2 {
         font-size: 50px
         }
+        #inCorrect {
+            display: None;
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
@@ -80,6 +89,9 @@
     <img id="example" class="example" alt="Matematický příklad">
     <input type="text" id="answer" placeholder="Zadejte odpověď">
     <button onclick="checkAnswer()">Odeslat</button>
+    <div id="inCorrect" class="inCorrect">
+    <p>Špatně, zkus to znovu.</p>
+    </div>
     <img id="success" src="nice.jpg" alt="Správně">
     <img id="hint" src="meme1.png" alt="Nápověda">
     <div class="white-box" id="whiteBox">
@@ -88,11 +100,11 @@
 
     <script>
             const images = [
-                { src: "math1_white.png", correctAnswer: "1" },
-                { src: "math1_green.png", correctAnswer: "2" },
-                { src: "math_example3.png", correctAnswer: "3" },
-                { src: "math_example4.png", correctAnswer: "4" },
-                { src: "math_example5.png", correctAnswer: "5" }
+                { src: "1.png", correctAnswer: "425" },
+                { src: "2.png", correctAnswer: "28" },
+                { src: "3.png", correctAnswer: "3" },
+                { src: "4.png", correctAnswer: "252" },
+                { src: "5.png", correctAnswer: "9" }
              ];
              const memes = [
                 { src: "meme1.jpg"},
@@ -132,6 +144,7 @@
         const imageElement = document.getElementById("example");
         imageElement.src = randomImage.src;
         imageElement.classList.add("example");}
+        const inCorrect = document.getElementById("inCorrect");
         function checkAnswer() {
             
             const userAnswer = document.getElementById("answer").value;
@@ -142,10 +155,12 @@
                 hint.style.display = "none";
                 setRandomMemecorrect();
                 whiteBox.style.display = "block";
+                inCorrect.style.display = "none";
             } else {
                 setRandomMeme();
                 success.style.display = "none";
                 whiteBox.style.display = "none";
+                inCorrect.style.display = "block";
             }
         }
         window.onload = setRandomImage;
