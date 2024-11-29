@@ -132,7 +132,7 @@
         function setRandomMemecorrect(){
         randomMemecorrect = memes[Math.floor(Math.random() * memes.length)];
         const memeElementcorrect = document.getElementById("success");
-        memeElementcorrect.src = randomMeme.src;
+        memeElementcorrect.src = randomMemecorrect.src;
         memeElementcorrect.classList.add("success");
         memeElementcorrect.style.display = "block";}                
                         
@@ -154,10 +154,12 @@
             if (userAnswer === randomImage.correctAnswer) {
                 hint.style.display = "none";
                 setRandomMemecorrect();
+                success.style.display = "block";
                 whiteBox.style.display = "block";
                 inCorrect.style.display = "none";
             } else {
                 setRandomMeme();
+                hint.style.display = "block";
                 success.style.display = "none";
                 whiteBox.style.display = "none";
                 inCorrect.style.display = "block";
